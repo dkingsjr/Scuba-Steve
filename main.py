@@ -1,16 +1,16 @@
 import discord
 import random
 import os
+from blocked import *
 
 client = discord.Client()
-
-blocked_words = ["nigger", "nigga", "kike", "chink", "cunt", "tosser", "whore", "retard"]
 
 #logs bot into server
 @client.event
 async def on_ready():
   print("I'm logged in as {0.user}".format(client))
 
+#
 @client.event
 async def on_message(message):
   username = str(message.author).split('#')[0]
@@ -22,10 +22,16 @@ async def on_message(message):
     "Hows it going": f"Great! How about you {username}?", "hows it going": f"Great! How about you {username}?",
     "What's up?": f"What's up {username}?", "what's up?": f"What's up {username}?", 
     "Whats up?": f"What's up {username}?", "Whats up": f"What's up {username}?",
-    "whats up": f"What's up {username}?", "bye": f"See you later {username}!", "goodbye": f"See you later {username}!",
+    "whats up": f"What's up {username}?", "bye": f"See you later {username}!", "goodbye": f"See you later {username}!"
 }
   
   print(f'{username}: {user_message} ({channel})')
+
+@client.event
+async def on_message(message):
+  username = str(message.author).split('#')[0]
+  user_message = str(message.content)
+  channel = str(message.channel.name)
 
   if message.author == client.user:
     return
@@ -69,7 +75,5 @@ async def on_message(message):
     response = f'http://tracking.oceanproject.co/animal/ollie-shark/track'
     await message.channel.send(response)
     return
-
-  
 
 client.run(os.getenv('TOKEN'))
