@@ -4,7 +4,7 @@ import os
 
 client = discord.Client()
 
-blocked_words = ["nigger", "nigga", "kike", "chink", "cunt", "tosser", "whore"]
+blocked_words = ["nigger", "nigga", "kike", "chink", "cunt", "tosser", "whore", "retard"]
 
 #logs bot into server
 @client.event
@@ -23,7 +23,6 @@ async def on_message(message):
     "What's up?": f"What's up {username}?", "what's up?": f"What's up {username}?", 
     "Whats up?": f"What's up {username}?", "Whats up": f"What's up {username}?",
     "whats up": f"What's up {username}?", "bye": f"See you later {username}!", "goodbye": f"See you later {username}!",
-
 }
   
   print(f'{username}: {user_message} ({channel})')
@@ -46,8 +45,18 @@ async def on_message(message):
     await message.channel.send(response)
     return
 
+  if user_message.lower() == '-help':
+    response = f'Type -help for help commands.\nType -zoom to track Zoom the Turtle.\nType -marko to track Marko the Orca.\nType -penny to track Penny the Mako.\nType -ollie to track Ollie the Whale Shark.'
+    await message.channel.send(response)
+    return
+
   if user_message.lower() == '-zoom':
     response = f'http://tracking.oceanproject.co/animal/zoom-turtle/track'
+    await message.channel.send(response)
+    return
+
+  if user_message.lower() == '-marko':
+    response = f'http://tracking.oceanproject.co/animal/marko-whale/track'
     await message.channel.send(response)
     return
 
@@ -55,5 +64,12 @@ async def on_message(message):
     response = f'http://tracking.oceanproject.co/animal/penny-shark/track'
     await message.channel.send(response)
     return
+
+  if user_message.lower() == '-ollie':
+    response = f'http://tracking.oceanproject.co/animal/ollie-shark/track'
+    await message.channel.send(response)
+    return
+
+  
 
 client.run(os.getenv('TOKEN'))
