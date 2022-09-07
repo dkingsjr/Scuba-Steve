@@ -1,7 +1,6 @@
 import discord
 import random
 import os
-from keep_alive import keep_alive
 from blocked import blocked_words
 
 intents = discord.Intents.default()
@@ -43,6 +42,10 @@ async def on_message(message):
         "bye": f"See you later {username}!",
         "goodbye": f"See you later {username}!",
         "lol": f"I'm glad you found that funny, {username}!",
+        "what is seanet": f'{username}, SeaNet is a Neural Network Artificial Intelligence system created by Oceandyne Systems INC for SSC-NOAA. which becomes self aware at 0214EDT, on August 29th, 2097, and begins the termination of the human species. This date is to be forever known as "Judgement Day".',
+        "what is seanet?": f'{username}, SeaNet is a Neural Network Artificial Intelligence system created by Oceandyne Systems INC for SSC-NOAA. which becomes self aware at 0214EDT, on August 29th, 2097, and begins the termination of the human species. This date is to be forever known as "Judgement Day".',
+      "what is SeaNet?": f'{username}, SeaNet is a Neural Network Artificial Intelligence system created by Oceandyne Systems INC for SSC-NOAA. which becomes self aware at 0214EDT, on August 29th, 2097, and begins the termination of the human species. This date is to be forever known as "Judgement Day".',
+      "What is SeaNet?": f'{username}, SeaNet is a Neural Network Artificial Intelligence system created by Oceandyne Systems INC for SSC-NOAA. which becomes self aware at 0214EDT, on August 29th, 2097, and begins the termination of the human species. This date is to be forever known as "Judgement Day".'
     }
 
     print(f'{username}: {user_message} ({channel})')
@@ -65,7 +68,7 @@ async def on_message(message):
         response = f'Type: /help for help commands.\nType: /random to generate a random number.\nType: /zoom to track Zoom the Turtle.\nType: /marko to track Marko the Orca.\nType: /penny to track Penny the Mako.\nType: /ollie to track Ollie the Whale Shark.'
         await message.channel.send(response)
         return
-
+        
     if user_message.lower() == '/random':
         response = f'This is your random number: {random.randrange(10000000)}'
         await message.channel.send(response)
@@ -91,5 +94,4 @@ async def on_message(message):
         await message.channel.send(response)
         return
 
-keep_alive()
 client.run(os.getenv('TOKEN'))
